@@ -14,6 +14,6 @@ echo "APP ?= ${PROJECT_NAME}">>./make/vars.mk
 ${EX_CURL} -L -o ./rebar ${REBAR_URL}
 mkdir -p ./apps/${PROJECT_NAME}/include ./rel ./deps
 chmod +x ./rebar
-cd ${PROJECT_DIR}/apps/${PROJECT_NAME}; ${EX_REBAR} c-a appid=${PROJECT_NAME}
-cd ${PROJECT_DIR}/rel; ${EX_REBAR} c-n nodeid=${PROJECT_NAME}
+cd ${PROJECT_DIR}/apps/${PROJECT_NAME}; ${EX_REBAR} c-a appid=${PROJECT_NAME};
+cd ${PROJECT_DIR}/rel; ${EX_REBAR} c-n nodeid=${PROJECT_NAME};
 
