@@ -11,7 +11,7 @@ REBAR_URL="https://github.com/rebar/rebar/wiki/rebar"
 ${EX_GIT} clone %{ET_REPO} ./
 rm -rf .git ./et_
 echo "APP ?= ${PROJECT_NAME}">>./make/vars.mk
-${EX_CURL} -o ./rebar ${REBAR_URL}
+${EX_CURL} -L -o ./rebar ${REBAR_URL}
 mkdir -p ./apps/${PROJECT_NAME}/include ./rel ./deps
 chmod +x ./rebar
 (cd ./apps/${PROJECT_NAME}; ${EX_REBAR} c-a appid=${PROJECT_NAME})
