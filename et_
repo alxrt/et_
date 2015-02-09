@@ -8,7 +8,7 @@ EX_REBAR="${PWD}/rebar"
 ET_REPO="https://github.com/alxrt/et_.git"
 REBAR_URL="https://github.com/rebar/rebar/wiki/rebar"
 
-${EX_GIT} clone ./
+${EX_GIT} clone %{ET_REPO} ./
 rm -rf .git ./et_
 echo "APP ?= ${PROJECT_NAME}">>./make/vars.mk
 ${EX_CURL} -o ./rebar ${REBAR_URL}
