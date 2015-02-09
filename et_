@@ -1,16 +1,18 @@
 #!/bin/env bash
 PROJECT_NAME=${PWD##*/}
 
-EX_GIT=$("/usr/bin/whereis git")
-EX_CURL=$("/usr/bin/whereis curl")
+EX_GIT=$(/usr/bin/whereis git)
+EX_CURL=$(/usr/bin/whereis curl)
 EX_REBAR="${PWD}/rebar"
 
 ET_REPO="https://github.com/alxrt/et_.git"
+REBAR_URL="https://github.com/rebar/rebar/wiki/rebar"
 
 ${EX_GIT} clone ./
 rm -rf .git ./et_
 echo "APP ?= ${PROJECT_NAME}">>./make/vars.mk
-make rebar
+${EX_CURL} -o ./rebar ${REBAR_URL}
 mkdir -p ./apps/${PROJECT_NAME}/include ./rel ./deps
+chmod +x ./rebar
 (cd ./apps/${PROJECT_NAME}; ${EX_REBAR} c-a appid=${PROJECT_NAME})
 (cd ./rel && ${EX_REBAR} c-n nodeid=${PROJECT_NAME})
