@@ -1,6 +1,6 @@
 #!/bin/env bash
 PROJECT_NAME=${PWD##*/}
-
+PROJECT_DIR=${PWD}
 EX_GIT=$(/usr/bin/whereis git)
 EX_CURL=$(/usr/bin/whereis curl)
 EX_REBAR="${PWD}/rebar"
@@ -14,5 +14,6 @@ echo "APP ?= ${PROJECT_NAME}">>./make/vars.mk
 ${EX_CURL} -L -o ./rebar ${REBAR_URL}
 mkdir -p ./apps/${PROJECT_NAME}/include ./rel ./deps
 chmod +x ./rebar
-(cd ./apps/${PROJECT_NAME}; ${EX_REBAR} c-a appid=${PROJECT_NAME})
-(cd ./rel; ${EX_REBAR} c-n nodeid=${PROJECT_NAME})
+cd ${PROJECT_DIR}/apps/${PROJECT_NAME}; ${EX_REBAR} c-a appid=${PROJECT_NAME}
+cd ${PROJECT_DIR}/rel; ${EX_REBAR} c-n nodeid=${PROJECT_NAME}
+
