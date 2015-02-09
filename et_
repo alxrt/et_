@@ -15,4 +15,4 @@ ${EX_CURL} -L -o ./rebar ${REBAR_URL}
 mkdir -p ./apps/${PROJECT_NAME}/include ./rel ./deps
 chmod +x ./rebar
 (cd ./apps/${PROJECT_NAME}; ${EX_REBAR} c-a appid=${PROJECT_NAME})
-(cd ./rel && ${EX_REBAR} c-n nodeid=${PROJECT_NAME})
+(cd ./rel; ${EX_REBAR} c-n nodeid=${PROJECT_NAME})
