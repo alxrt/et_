@@ -8,14 +8,28 @@ EX_REBAR="${PWD}/rebar"
 ET_REPO="https://github.com/alxrt/et_.git"
 REBAR_URL="https://github.com/rebar/rebar/wiki/rebar"
 
+echo "Fetching repo from github"
 ${EX_GIT} clone ${ET_REPO} ./
+
+echo "Removing unused directory and files"
 rm -rf .git ./et_
+
+echo "Setting APP to ${PROJECT_NAME}"
 echo "APP ?= ${PROJECT_NAME}">>./make/vars.mk
-${EX_CURL} -L -o ./rebar ${REBAR_URL}
-mkdir -p ./apps/${PROJECT_NAME}/include ./rel ./deps
+
+echo "Fetching Rebar"
+${EX_CURL} -s -L -o ./rebar ${REBAR_URL}
 chmod +x ./rebar
+
+echo "Creating some directories"
+mkdir -p ./apps/${PROJECT_NAME}/include ./rel ./deps
+
+echo "Creating erlang application"
 cd ${PROJECT_DIR}/apps/${PROJECT_NAME}
 ${EX_REBAR} c-a appid=${PROJECT_NAME}
+
+echo "Creating erlang release"
 cd ${PROJECT_DIR}/rel
 ${EX_REBAR} c-n nodeid=${PROJECT_NAME}
 
+echo "All done"
